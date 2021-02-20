@@ -1,0 +1,7 @@
+{
+  "homeserverUrl": "https://localhost",
+  "matrixUserId": "@bot:localhost",
+  "matrixAccessToken": "YourSecretAccessToken",
+  "pollFrequency": 600,
+  "messageTimeLimit": 86400
+}
