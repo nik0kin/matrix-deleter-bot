@@ -66,7 +66,7 @@ async function checkMessageLimitsAndDelete(
       event.getContent().body
     ) {
       console.log('Delete message', event.getId());
-      matrixClient.redactEvent(room.id, event.getId(), event.getTxnId());
+      matrixClient.redactEvent(room.roomId, event.getId(), event.getTxnId());
     }
   });
 
