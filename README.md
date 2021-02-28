@@ -1,6 +1,10 @@
 # matrix-deleter-bot
 
-Deletes messages after a time limit
+Deletes messages in all joined matrix rooms after a given time limit (24h) to simulate Snapchat/Instagram-stories limited duration messages.
+
+Currently the time limit is per bot, but could be expanded to per room with additional work to the project.
+
+The bot account must have privileges to delete messages in a given room.
 
 ## Develop
 
