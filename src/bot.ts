@@ -12,7 +12,12 @@ async function poll(
   try {
     await checkMessageLimitsAndDelete(settings /*, botClient*/);
   } catch (e) {
-    console.error('Something went wrong polling', e);
+    if (e && e.message.includes("You don't have permission to redact events")) {
+      console.error('Your bot is lacking room permissions to delete messages!');
+      return;
+    }
+
+    console.error('Something went wrong', e);
   }
   setPollTimeout(settings /*, botClient*/);
 }
@@ -48,7 +53,7 @@ async function checkMessageLimitsAndDelete(settings: SettingsWithDefaults) {
           onSyncPrepared(matrixClient, settings).then(() => {
             matrixClient.stopClient();
             resolve();
-          });
+          }, reject);
           break;
       }
     });
@@ -87,8 +92,6 @@ async function onSyncPrepared(
       await checkRoomMessages(matrixClient, room, timelineWindow, settings);
     }
   }
-
-  matrixClient.stopClient();
 }
 
 async function checkRoomMessages(
